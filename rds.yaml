@@ -2,8 +2,9 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: This template creates an RDS DB instance that is restored from a DB snapshot.
 
+# The following metadata is used to group the parameters
 Metadata:
-  AWS::CloudFormation::Interface: 
+  AWS::CloudFormation::Interface:
     ParameterGroups:
       - 
         Label: 
@@ -19,6 +20,7 @@ Metadata:
           - DatabaseInstanceClass
           - MultiAZDatabase
 
+# Parameters are used to to build flexible CloudFormation templates
 Parameters:
   ExportVpcStackName:
     Description: The name of the VPC stack that exports values.
@@ -59,6 +61,7 @@ Parameters:
     Type: String
 
 Resources:
+  # Create database subnet group
   DatabaseSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
@@ -70,6 +73,7 @@ Resources:
         - Key: Name
           Value: Database Subnets
 
+  # Create database from RDS snapshot
   DatabaseInstance:
     Type: AWS::RDS::DBInstance
     Properties:
