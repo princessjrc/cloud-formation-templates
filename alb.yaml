@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: This template creates an Application Load Balancer.
 
+# The following metadata is used to group the parameters
 Metadata:
   AWS::CloudFormation::Interface: 
     ParameterGroups:
@@ -16,6 +17,7 @@ Metadata:
         Parameters:
           - ExportVpcStackName
 
+# Parameters are used to to build flexible CloudFormation templates
 Parameters:
   AcmCertificate:
     Description: The ARN of the AWS Certification Manager's certificate.
@@ -83,6 +85,7 @@ Resources:
       VpcId:
         Fn::ImportValue: !Sub ${ExportVpcStackName}-VPC
 
+# Create outputs to export some information about our VPC so we can reference the information in another CloudFormation template.
 Outputs:
 # Export Target Group
   ALBTargetGroup:

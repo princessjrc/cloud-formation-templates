@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: This template creates an Auto Scaling Group.
 
+# The following metadata is used to group the parameters
 Metadata:
   AWS::CloudFormation::Interface: 
     ParameterGroups:
@@ -41,6 +42,7 @@ Metadata:
         Parameters:
           - EC2KeyName
 
+# Parameters are used to to build flexible CloudFormation templates
 Parameters:
   ExportVpcStackName:
     Description: The name of the VPC stack that exports values.
