@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: This template creates a record in Route 53.
 
+# The following metadata is used to group the parameters
 Metadata:
   AWS::CloudFormation::Interface: 
     ParameterGroups:
@@ -16,6 +17,7 @@ Metadata:
         Parameters:
           - DomainName
 
+# Parameters are used to to build flexible CloudFormation templates
 Parameters:
   ExportAlbStackName:
     Description: The name of the ALB stack that exports values.
@@ -27,6 +29,7 @@ Parameters:
     Default: jrcworks.com
 
 Resources:
+# Create record set
   SiteDomainName:
     Type: AWS::Route53::RecordSetGroup
     Properties:
@@ -43,6 +46,7 @@ Resources:
           DNSName:
             Fn::ImportValue: !Sub ${ExportAlbStackName}-ApplicationLoadBalancerDnsName
 
+# Create outputs to export some information about our VPC so we can reference the information in another CloudFormation template.
 Outputs:
   WebsiteURL:
     Value: !Join
