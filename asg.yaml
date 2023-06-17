@@ -84,6 +84,7 @@ Parameters:
     ConstraintDescription: Must be a valid EC2 instance type.
 
 Resources:
+# Create a launch template
   WebServerLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
     Properties:
@@ -97,6 +98,7 @@ Resources:
         SecurityGroupIds:
           - Fn::ImportValue: !Sub ${ExportVpcStackName}-WebserverSecurityGroup
 
+# Create a notification topic
   NotificationTopic:
     Type: AWS::SNS::Topic
     Properties:
@@ -104,6 +106,7 @@ Resources:
         - Endpoint: !Ref OperatorEmail
           Protocol: email
 
+# Create an auto scaling group
   WebServerAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
